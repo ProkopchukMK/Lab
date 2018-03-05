@@ -11,7 +11,7 @@ namespace ConsoleApplication1
         static void Main(string[] args)
         {
             Console.WriteLine("Hello world");
-            Console.WriteLine("git remove ConsoleApplication1");
+            Console.WriteLine("git remove ConsoleApplication1");//ывываываы
             Console.WriteLine("Hello world");
         }
     }
