@@ -13,6 +13,7 @@ namespace ConsoleApp1
             Console.WriteLine("");
             Console.WriteLine("Hello from Home!!");
             Console.WriteLine("Hello From Logist!!!");
+            Console.WriteLine("Go to work!!!!");
         }
     }
 }
