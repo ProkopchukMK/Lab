@@ -1,18 +1,50 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Threading;
 
 namespace WpfApplication1
 {
     class ModelStopWatch
     {
-        public DateTime date = new DateTime(0, 0);
-        public DateTime StopWatch()
+        DispatcherTimer dt = new DispatcherTimer();
+        Stopwatch sw = new Stopwatch();
+        string currentTime = string.Empty;
+        string elapsedTime = string.Empty;
+        public ModelStopWatch()
         {
-           date = date.AddMilliseconds(1);
-           return date;
+            dt.Tick += new EventHandler(dt_Tick);
+            dt.Interval = new TimeSpan(0, 0, 0, 0, 1);
+        }
+
+        private void dt_Tick(object sender, EventArgs e)
+        {
+            if (sw.IsRunning)
+            {
+                TimeSpan ts = sw.Elapsed;
+                currentTime = String.Format("{0:00}:{1:00}:{2:00}:{3:000}", ts.Hours,
+                ts.Minutes, ts.Seconds, ts.Milliseconds / 1);
+            }
+        }
+
+        public string Tick(DateTime time)
+        {
+            if (sw.IsRunning)
+            {
+                TimeSpan ts = sw.Elapsed;
+                currentTime = String.Format("{0:00}:{1:00}:{2:00}:{3:000}", time.Hour,
+                time.Minute, time.Second, time.Millisecond + 1);
+                return currentTime;
+            }
+            return "00:00:00:000";
+        }
+
+        public string Reset()
+        {
+            return "00:00:00:000";
         }
     }
 }
