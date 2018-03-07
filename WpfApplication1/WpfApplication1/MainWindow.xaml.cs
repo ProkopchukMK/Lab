@@ -25,7 +25,6 @@ namespace WpfApplication1
             InitializeComponent();
             new PresenterStopWatch(this);
         }
-
         public event EventHandler StartStopWatch = null;
         //START
         public void button_Click(object sender, RoutedEventArgs e)

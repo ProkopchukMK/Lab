@@ -19,7 +19,7 @@ namespace WpfApplication1
         }
         void mainWindow_StartStopWatch(object sender, EventArgs e)
         {
-            this.mainWindow.label.Content = this.model.StopWatch("start");
+            //this.mainWindow.label.Content = this.model.StopWatch("start");
         }
     }
 }
