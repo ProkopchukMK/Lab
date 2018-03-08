@@ -12,9 +12,9 @@ namespace WpfApplication1
     {
         DispatcherTimer dt = new DispatcherTimer();
         Stopwatch sw = new Stopwatch();
-        string currentTime = string.Empty;
+        string currentTime = "00:00:00:00";
         string elapsedTime = string.Empty;
-
+        
         public ModelStopWatch()
         {
             dt.IsEnabled = false;
@@ -22,34 +22,27 @@ namespace WpfApplication1
             dt.Interval = new TimeSpan(0, 0, 0, 0, 1);
         }
 
-        private void dt_Tick(object sender, EventArgs e)
+        public void dt_Tick(object sender, EventArgs e)
         {
             if (sw.IsRunning)
             {
                 TimeSpan ts = sw.Elapsed;
-                currentTime = String.Format("{0:00}:{1:00}:{2:00}:{3:00}", ts.Hours,
-                ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
+                currentTime = String.Format("{0:00}:{1:00}:{2:00}:{3:000}", ts.Hours,
+                ts.Minutes, ts.Seconds, ts.Milliseconds);
+                Elapsed();
             }
         }
         //start stop
         public void Start_Stop()
-        {
-            if (!sw.IsRunning)
-            {
+        {            
                 dt.Start();
-                sw.Start();
-            }
-            else
-            {
-                dt.Stop();
-                sw.Stop();
-            }
+                sw.Start();            
         }
         //reset
         public string Reset()
         {
-            sw.Restart();
-            currentTime = "00:00:00:00";
+            sw.Reset();
+            currentTime = "00:00:00:000";
             return currentTime;
         }
         //elapsed
