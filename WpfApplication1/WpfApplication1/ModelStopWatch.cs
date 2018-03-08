@@ -14,8 +14,10 @@ namespace WpfApplication1
         Stopwatch sw = new Stopwatch();
         string currentTime = string.Empty;
         string elapsedTime = string.Empty;
+
         public ModelStopWatch()
         {
+            dt.IsEnabled = false;
             dt.Tick += new EventHandler(dt_Tick);
             dt.Interval = new TimeSpan(0, 0, 0, 0, 1);
         }
@@ -29,22 +31,31 @@ namespace WpfApplication1
                 ts.Minutes, ts.Seconds, ts.Milliseconds / 1);
             }
         }
-
-        public string Tick(DateTime time)
+        //start stop
+        public void Start_Stop()
         {
-            if (sw.IsRunning)
+            if (!sw.IsRunning)
             {
-                TimeSpan ts = sw.Elapsed;
-                currentTime = String.Format("{0:00}:{1:00}:{2:00}:{3:000}", time.Hour,
-                time.Minute, time.Second, time.Millisecond + 1);
-                return currentTime;
+                dt.Start();
+                sw.Start();
             }
-            return "00:00:00:000";
+            else
+            {
+                dt.Stop();
+                sw.Stop();
+            }
         }
-
+        //reset
         public string Reset()
         {
-            return "00:00:00:000";
+            sw.Stop();
+            currentTime = "00:00:00:000";
+            return currentTime;
+        }
+        //elapsed
+        public string Elapsed()
+        {
+            return currentTime;
         }
     }
 }
