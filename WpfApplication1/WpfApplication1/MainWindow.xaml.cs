@@ -36,6 +36,7 @@ namespace WpfApplication1
         public void start_Click(object sender, RoutedEventArgs e)
         {
             StartStopWatch.Invoke(sender, e);
+            CurrentStopWatch_update(sender, e);
         }
         //RESULT
         public void elapse_Click(object sender, RoutedEventArgs e)
@@ -49,8 +50,8 @@ namespace WpfApplication1
         }
         //current stopwatch
         public void CurrentStopWatch_update(object sender, RoutedEventArgs e)
-        {
-            CurrentStopWatch.Invoke(sender, e);
+        {            
+                CurrentStopWatch.Invoke(sender, e);
         }
     }
 }

@@ -27,8 +27,8 @@ namespace WpfApplication1
             if (sw.IsRunning)
             {
                 TimeSpan ts = sw.Elapsed;
-                currentTime = String.Format("{0:00}:{1:00}:{2:00}:{3:000}", ts.Hours,
-                ts.Minutes, ts.Seconds, ts.Milliseconds / 1);
+                currentTime = String.Format("{0:00}:{1:00}:{2:00}:{3:00}", ts.Hours,
+                ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
             }
         }
         //start stop
@@ -48,8 +48,8 @@ namespace WpfApplication1
         //reset
         public string Reset()
         {
-            sw.Stop();
-            currentTime = "00:00:00:000";
+            sw.Restart();
+            currentTime = "00:00:00:00";
             return currentTime;
         }
         //elapsed
