@@ -25,16 +25,18 @@ namespace WpfApplication1
         public MainWindow()
         {
             InitializeComponent();
-            new PresenterStopWatch(this);;
+            new PresenterStopWatch(this);            
         }
-        
+
         public event EventHandler StartStopWatch = null;
         public event EventHandler ElapseStopWatch = null;
         public event EventHandler ResetStopWatch = null;
+        public event EventHandler CurrentStopWatch = null;
         //START
         public void start_Click(object sender, RoutedEventArgs e)
         {
-            StartStopWatch.Invoke(sender,e);
+            StartStopWatch.Invoke(sender, e);
+
         }
         //RESULT
         public void elapse_Click(object sender, RoutedEventArgs e)
@@ -45,6 +47,11 @@ namespace WpfApplication1
         public void reset_Click(object sender, RoutedEventArgs e)
         {
             ResetStopWatch.Invoke(sender, e);
+        }
+        //current stopwatch
+        public void CurrentStopWatch_update(object sender, RoutedEventArgs e)
+        {
+            CurrentStopWatch.Invoke(sender, e);
         }
     }
 }
