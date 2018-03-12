@@ -27,42 +27,24 @@ namespace WpfApplication1
             InitializeComponent();
             new PresenterStopWatch(this);;
         }
-        DispatcherTimer dt = new DispatcherTimer();
-        Stopwatch sw = new Stopwatch();
-        string currentTime = string.Empty;
-        string elapsedTime = string.Empty;
         
-        void dt_Tick(object sender, EventArgs e)
-        {
-            if (sw.IsRunning)
-            {
-                TimeSpan ts = sw.Elapsed;
-                currentTime = String.Format("{0:00}:{1:00}:{2:00}",
-                ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
-                label.Content = currentTime;
-            }
-        }
         public event EventHandler StartStopWatch = null;
+        public event EventHandler ElapseStopWatch = null;
+        public event EventHandler ResetStopWatch = null;
         //START
-        public void button_Click(object sender, RoutedEventArgs e)
+        public void start_Click(object sender, RoutedEventArgs e)
         {
-            sw.Start();
-            dt.Start();
+            StartStopWatch.Invoke(sender,e);
         }
         //RESULT
-        public void button1_Click(object sender, RoutedEventArgs e)
+        public void elapse_Click(object sender, RoutedEventArgs e)
         {
-            if (!sw.IsRunning)
-            {
-                sw.Stop();
-            }
-            label1.Content = currentTime;
+            ElapseStopWatch.Invoke(sender, e);
         }
         //RELOAD
-        public void button2_Click(object sender, RoutedEventArgs e)
+        public void reset_Click(object sender, RoutedEventArgs e)
         {
-            sw.Reset();
-            label.Content = "00:00:00";
+            ResetStopWatch.Invoke(sender, e);
         }
     }
 }

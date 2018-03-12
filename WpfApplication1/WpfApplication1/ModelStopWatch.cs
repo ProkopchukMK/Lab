@@ -19,7 +19,6 @@ namespace WpfApplication1
             dt.Tick += new EventHandler(dt_Tick);
             dt.Interval = new TimeSpan(0, 0, 0, 0, 1);
         }
-
         private void dt_Tick(object sender, EventArgs e)
         {
             if (sw.IsRunning)
@@ -27,24 +26,28 @@ namespace WpfApplication1
                 TimeSpan ts = sw.Elapsed;
                 currentTime = String.Format("{0:00}:{1:00}:{2:00}:{3:000}", ts.Hours,
                 ts.Minutes, ts.Seconds, ts.Milliseconds / 1);
+                CurentTime();
             }
-        }
-
-        public string Tick(DateTime time)
+        } 
+        public void Start()
+        {
+            sw.Start();
+            dt.Start();
+        } 
+        public void Stop()
         {
             if (sw.IsRunning)
             {
-                TimeSpan ts = sw.Elapsed;
-                currentTime = String.Format("{0:00}:{1:00}:{2:00}:{3:000}", time.Hour,
-                time.Minute, time.Second, time.Millisecond + 1);
-                return currentTime;
+                sw.Stop();
             }
-            return "00:00:00:000";
         }
-
-        public string Reset()
+        public void Reset()
         {
-            return "00:00:00:000";
+            currentTime =  "00:00:00:000";
+        }
+        public string CurentTime()
+        {
+            return currentTime;
         }
     }
 }
